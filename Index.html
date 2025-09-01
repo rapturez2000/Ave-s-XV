@@ -1,0 +1,231 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Save the Date for Aveline Aracely Molina's Quinceañera">
+  <title>Save the Date - Aveline Aracely Molina</title>
+  <style>
+    /* Reset */
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    body, html {
+      height: 100%;
+      font-family: 'Georgia', serif;
+      overflow: hidden;
+      background: #000;
+    }
+
+    /* Slideshow */
+    .slideshow {
+      position: fixed;
+      top: 0; left: 0;
+      width: 100%; height: 100%;
+      z-index: -2;
+      overflow: hidden;
+    }
+    .slideshow img {
+      position: absolute;
+      width: 100%; height: 100%;
+      object-fit: cover;
+      opacity: 0;
+      animation: fade infinite;
+    }
+    @keyframes fade {
+      0% { opacity: 0; }
+      10% { opacity: 1; }
+      40% { opacity: 1; }
+      50% { opacity: 0; }
+      100% { opacity: 0; }
+    }
+
+    /* Overlay */
+    .overlay {
+      position: relative;
+      background: rgba(255, 0, 0, 0.65);
+      height: 100%;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+      color: white;
+      padding: 2rem;
+      z-index: 1;
+      animation: fadeInText 2s ease-in;
+    }
+    @keyframes fadeInText {
+      from { opacity: 0; transform: translateY(20px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    h1 { font-size: 3rem; color: gold; margin-bottom: 0.5rem; }
+    h2 { font-size: 2rem; margin-bottom: 0.5rem; }
+    p { font-size: 1.2rem; margin-bottom: 0.5rem; }
+    .date { font-size: 2rem; color: #FFD700; margin: 1rem 0; }
+
+    /* Countdown */
+    #countdown {
+      display: flex;
+      justify-content: center;
+      gap: 15px;
+      margin-top: 1.5rem;
+      flex-wrap: wrap;
+    }
+    .time-box {
+      background: rgba(255, 215, 0, 0.9);
+      color: #FF0000;
+      padding: 15px 20px;
+      border-radius: 12px;
+      font-size: 1.5rem;
+      font-weight: bold;
+      min-width: 90px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.3);
+      transition: transform 0.3s;
+    }
+    .time-box.updated {
+      transform: scale(1.2);
+    }
+    .label { display: block; font-size: 0.9rem; color: #FF0000; margin-top: 5px; }
+
+    /* Buttons */
+    .btn {
+      margin-top: 20px;
+      background: gold;
+      color: #FF0000;
+      border: none;
+      padding: 12px 25px;
+      border-radius: 10px;
+      font-size: 1rem;
+      font-weight: bold;
+      cursor: pointer;
+      text-decoration: none;
+      display: inline-block;
+      box-shadow: 0 3px 8px rgba(0,0,0,0.3);
+    }
+    .btn:hover { background: #f9e76d; }
+
+    .footer { margin-top: 2rem; font-size: 1rem; opacity: 0.9; }
+
+    /* Floating Butterflies */
+    .butterfly {
+      position: fixed;
+      width: 50px;
+      height: 50px;
+      background: url('https://i.ibb.co/nrY9P1h/golden-butterfly.png') no-repeat center/contain;
+      animation: fly 20s linear infinite;
+      z-index: 1;
+      opacity: 0.8;
+    }
+    @keyframes fly {
+      0% { transform: translateX(-10%) translateY(100vh) rotate(0deg); }
+      50% { transform: translateX(50vw) translateY(50vh) rotate(180deg); }
+      100% { transform: translateX(110%) translateY(-10%) rotate(360deg); }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Slideshow -->
+  <div class="slideshow" id="slideshow"></div>
+
+  <!-- Floating Butterflies -->
+  <div class="butterfly"></div>
+  <div class="butterfly"></div>
+  <div class="butterfly"></div>
+  <div class="butterfly"></div>
+
+  <!-- Overlay -->
+  <div class="overlay">
+    <h1>Save the Date</h1>
+    <h2>Aveline Aracely Molina</h2>
+    <p>is celebrating her Quinceañera</p>
+    <div class="date">October 25, 2025 • 6:00 PM</div>
+
+    <!-- Countdown -->
+    <div id="countdown">
+      <div class="time-box"><span id="days">00</span><span class="label">Days</span></div>
+      <div class="time-box"><span id="hours">00</span><span class="label">Hours</span></div>
+      <div class="time-box"><span id="minutes">00</span><span class="label">Minutes</span></div>
+      <div class="time-box"><span id="seconds">00</span><span class="label">Seconds</span></div>
+    </div>
+
+    <p>Hawkins Ballroom<br>Horizon Blvd. 79928</p>
+    <p>Semi-formal Attire</p>
+    <p>RSVP: 915-329-5173</p>
+
+    <a class="btn" href="https://maps.app.goo.gl/FWxY6BHvnna9VUVH9?g_st=ac" target="_blank">📍 Open in Google Maps</a>
+
+    <audio id="bg-music" loop>
+      <source src="https://www.bensound.com/bensound-music/bensound-sweet.mp3" type="audio/mpeg">
+    </audio>
+    <button class="btn" onclick="toggleMusic()">🔊 Play / Pause Music</button>
+
+    <a class="btn" href="https://api.whatsapp.com/send?text=Save%20the%20Date%20for%20Aveline%20Aracely%20Molina%27s%20Quince%C3%B1era%21%20Check%20it%20out%3A%20YOUR_PAGE_URL" target="_blank">💌 Share via WhatsApp</a>
+
+    <div class="footer">🦋 With love, The Molina Family 🦋</div>
+  </div>
+
+  <script>
+    // Slideshow Images from Google Drive
+    const imageIDs = [
+      "1Yp4cRoN5jdu7HQE7t340KGEN2IedJp-C",
+      "1YmbjSQDq3K_151L0OTrbArTPzc2HYXlr",
+      "1YjpykZwVTrg_at-gShJa9kdgBP1rGydv",
+      "1YeftWOi71kiYcyAbX2rWOfJNpWbhGcHx",
+      "1Yco5wH7yf6Kl68h1ZhIeG7AV0hg8wiop",
+      "1YZavK3GTEgJQhd-T-kOQy4gTqVnu2-N5",
+      "1Ys_O-z6gJlRoLdQR1h0seoVeOBFS7xJJ",
+      "1YXbWZdgS5vW6V-sKDgQ_gF1UrYCF8vAl"
+    ];
+
+    const slideshow = document.getElementById("slideshow");
+    const slideDuration = 6; // seconds per slide
+    const totalDuration = imageIDs.length * slideDuration;
+
+    imageIDs.forEach((id, index) => {
+      const img = document.createElement("img");
+      img.src = `https://drive.google.com/uc?export=view&id=${id}`;
+      img.alt = `Slide ${index + 1}`;
+      img.style.animationDelay = `${index * slideDuration}s`;
+      img.style.animationDuration = `${totalDuration}s`;
+      slideshow.appendChild(img);
+    });
+
+    // Countdown
+    const eventDate = new Date("Oct 25, 2025 18:00:00").getTime();
+    setInterval(() => {
+      const now = new Date().getTime();
+      const distance = eventDate - now;
+      if(distance < 0){
+        document.getElementById("countdown").innerHTML = "It's Party Time! 🎉";
+        return;
+      }
+      const days = Math.floor(distance / (1000*60*60*24));
+      const hours = Math.floor((distance % (1000*60*60*24))/(1000*60*60));
+      const minutes = Math.floor((distance % (1000*60*60))/(1000*60));
+      const seconds = Math.floor((distance % (1000*60))/1000);
+
+      ['days','hours','minutes','seconds'].forEach(id => {
+        const el = document.getElementById(id);
+        el.textContent = eval(id);
+        el.parentElement.classList.add('updated');
+        setTimeout(() => el.parentElement.classList.remove('updated'), 300);
+      });
+    }, 1000);
+
+    // Music toggle
+    function toggleMusic() {
+      const music = document.getElementById("bg-music");
+      music.paused ? music.play() : music.pause();
+    }
+
+    // Randomize butterfly positions
+    document.querySelectorAll('.butterfly').forEach(b => {
+      b.style.left = `${Math.random() * 90}%`;
+      b.style.animationDelay = `${Math.random() * 20}s`;
+    });
+  </script>
+
+</body>
+</html>
